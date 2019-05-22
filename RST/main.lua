@@ -14,10 +14,10 @@ keyboard.y = 150
 
 
 local function keys( event )
-	if (event.keyName == "d" and event.phase == "down") then
-		print("it works")
+	--if (event.keyName == "a" and event.phase == "down") then
+		print("Key '".. event.keyName .. "' was pressed " .. event.phase)
 		return true
-	end
+	--end
 end
 
 Runtime:addEventListener( "key", keys)
