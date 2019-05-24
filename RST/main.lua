@@ -17,20 +17,26 @@ local nameBox = native.newTextField(display.contentCenterX, 80, 200, 15)
 local nameText = display.newText( "", display.contentCenterX, 80, "Times", 15)
 
 --local function keys( event )
---	--if (event.keyName == "a" and event.phase == "down") then
+--	if (event.keyName == "a" or event.keyName == "j") and (event.phase == "down") then
 --		print("Key '".. event.keyName .. "' was pressed " .. event.phase)
 --		return true
---	--end
+--	end
 --end
 
 local function namePrint( event )
-	if (nameBox.text ~= nil) then
-		if ((event.keyName == "enter" or event.keyName == "numPadEnter") and (event.phase == "down")) then
+	if ((event.keyName == "enter" or event.keyName == "numPadEnter") and (event.phase == "down")) then
+		nameText.text = "Write your name."
+		if (nameBox.text ~= "") then
 			nameText.text = "Hi, ".. nameBox.text ..". Welcome!"
-			display.remove( nameBox )
+			print("Hi")
+			print(event.keyName)
+			
+		else
+			print("write yuor name")
 		end
 	end
 end
+			
 
-ADD EVNET LISTIWEEBR FOR namePrint
+Runtime:addEventListener( "key", namePrint)
 --Runtime:addEventListener( "key", keys)
