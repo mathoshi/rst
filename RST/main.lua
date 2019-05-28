@@ -26,6 +26,12 @@ local startButton = display.newImageRect( "assets/startButton.png", 60, 47)
 startButton.x = display.contentCenterX
 startButton.y = 160
 
+-- To check if namePrint() has been called on start()
+local functCheck = 0
+
+local functCheck2 = 0
+
+-- To check if start() has been called on
 --local function keys( event )
 --	if (event.keyName == "a" or event.keyName == "j") and (event.phase == "down") then
 --		print("Key '".. event.keyName .. "' was pressed " .. event.phase)
@@ -37,22 +43,38 @@ local function namePrint( event )
 	if (nameBox.text ~= "") then
 		nameText.text = "Hi, ".. nameBox.text ..". Welcome!"
 		print("Hi")
+		functCheck = functCheck + 1
+		print(functCheck)
+		nameText:setFillColor( 1, 1, 1)
 	else
-		print("write yuor name")
+		functCheck2 = functCheck2 +1
+		print("write your name")
 		nameText.text = "Write your name."
 	end
 end
 			
-enterButon:addEventListener( "touch", namePrint)
 --Runtime:addEventListener( "key", keys)
 
 local function start( event )
-	display.remove(startButton)
-	display.remove(enterButon)
-	display.remove(nameBox)
-	keyboard.y = 130
-
+	if (functCheck >= 1) then
+		display.remove(startButton)
+		display.remove(enterButon)
+		display.remove(nameBox)
+		display.remove(nameText)
+		keyboard.y = 130
+	elseif (functCheck2 >= 1) then
+		nameText:setFillColor( 1, 0, 0)
+	else 
+		nameText.text = "Write your name."
+		print(functCheck)
+		print(functCheck2)
+	end
 end
 
+local function game()
+	
+
+enterButon:addEventListener( "touch", namePrint)
 startButton:addEventListener( "touch", start)
+
 
