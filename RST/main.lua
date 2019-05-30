@@ -28,6 +28,13 @@ local startButton = display.newImageRect( "assets/startButton.png", 60, 47)
 startButton.x = display.contentCenterX
 startButton.y = 160
 
+xTable = {}
+xTable["esc"] = 63
+yTable = {}
+yTable["esc"] = 81
+
+
+
 -- To check if namePrint() has been called on start()
 local functCheck = 0
 local functCheck2 = 0
@@ -61,7 +68,7 @@ end
 local function createLight()
 	-- local x = table stuff
 	-- local y = table stuff 
-	local light = display.newRoundedRect( 63, 81, 17, 17, 2)
+	local light = display.newRoundedRect( xTable["esc"], yTable["esc"]	, 17, 17, 2)
 	light:setFillColor( 0, 0, 0)
 	light.alpha = 0.5
 end
@@ -92,7 +99,7 @@ local function start( event )
 		print(functCheck)
 		print(functCheck2)
 	end
-	game()
+	timer.performWithDelay( 1000, game )
 end
 
 enterButon:addEventListener( "touch", namePrint)
