@@ -28,10 +28,12 @@ local startButton = display.newImageRect( "assets/startButton.png", 60, 47)
 startButton.x = display.contentCenterX
 startButton.y = 160
 
-xTable = {}
-xTable["esc"] = 63
-yTable = {}
-yTable["esc"] = 81
+t = {}
+
+t[1] = {63, 81}
+t[2] = {90, 81}
+
+
 
 
 
@@ -68,9 +70,13 @@ end
 local function createLight()
 	-- local x = table stuff
 	-- local y = table stuff 
-	local light = display.newRoundedRect( xTable["esc"], yTable["esc"]	, 17, 17, 2)
-	light:setFillColor( 0, 0, 0)
-	light.alpha = 0.5
+	x = t[ math.random( t[1][1], t[2][1] ) ] 
+	y = t[ math.random( t[1][2], t[2][2] ) ] 
+	print(x)
+	print(y)
+	--local light = display.newRoundedRect( x, y, 17, 17, 2)
+	--light:setFillColor( 0, 0, 0)
+	--light.alpha = 0.5
 end
 
 
