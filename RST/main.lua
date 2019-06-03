@@ -32,9 +32,24 @@ t = {}
 
 t[1] = {63, 81}
 t[2] = {90, 81}
+t[3] = {106, 81}
+t[4] = {122.5, 81}
+t[5] = {139, 81}
+t[6] = {164, 81}
+t[7] = {180, 81}
+t[8] = {197, 81}
+t[9] = {213, 81}
+t[10] = {238, 81}
+t[11] = {254, 81}
 
+--print( t[2][1])
 
+local myTable = { 'a', 'b', 'c', 'd' }
 
+i = math.random(1, 2)
+print(t[i][1])
+print(t[i][2])
+--print( t[ math.random( #t ) ] )
 
 
 -- To check if namePrint() has been called on start()
@@ -70,13 +85,18 @@ end
 local function createLight()
 	-- local x = table stuff
 	-- local y = table stuff 
-	x = t[ math.random( t[1][1], t[2][1] ) ] 
-	y = t[ math.random( t[1][2], t[2][2] ) ] 
-	print(x)
-	print(y)
-	--local light = display.newRoundedRect( x, y, 17, 17, 2)
-	--light:setFillColor( 0, 0, 0)
-	--light.alpha = 0.5
+	--x = t[ math.random( t[1][1], t[2][1] ) ] 
+	--y = t[ math.random( t[1][2], t[2][2] ) ] 
+	--print(x)
+	--print(y)
+	--a = "63, 81"
+	--tonumber(a)
+	--i = math.random(1, 2)
+	--x = t[i][1]
+	--y = t[i][2]
+	local light = display.newRoundedRect( 254, 81, 17, 17, 2)
+	light:setFillColor( 0, 0, 0)
+	light.alpha = 0.5
 end
 
 
