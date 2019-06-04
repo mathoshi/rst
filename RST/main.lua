@@ -41,6 +41,34 @@ t[8] = {197, 81}
 t[9] = {213, 81}
 t[10] = {238, 81}
 t[11] = {254, 81}
+t[12] = {270, 81}
+t[13] = {287, 81}
+t[14] = {62, 112.5}
+t[15] = {78, 112.5}
+t[16] = {94, 112.5}
+t[17] = {110.5, 112.5}
+t[18] = {126.5, 112.5}
+t[19] = {142.5, 112.5}
+t[20] = {158, 112.5}
+t[21] = {175, 112.5}
+t[22] = {191, 112.4}
+t[23] = {207, 112.5}
+t[24] = {223, 112.5}
+t[25] = {239.5, 112.5}
+t[26] = {255.5, 112.5}
+t[27] = {280, 112.5}
+t[28] = {369, 112.5}
+t[29] = {385, 112.5}
+t[30] = {402, 112.5}
+t[31] = {431, 112.5}
+t[32] = {66, 130}
+t[33] = {87, 130}
+t[34] = {102.5, 130}
+t[35] = {119, 130}
+t[36] = {135, 130}
+t[37] = {151, 130}
+t[36] = {136, 130}
+t[37] = {183, 130}
 
 --print( t[2][1])
 
@@ -91,10 +119,10 @@ local function createLight()
 	--print(y)
 	--a = "63, 81"
 	--tonumber(a)
-	--i = math.random(1, 2)
-	--x = t[i][1]
-	--y = t[i][2]
-	local light = display.newRoundedRect( 254, 81, 17, 17, 2)
+	-- i = math.random(1, 11)
+	-- x = t[i][1]
+	-- y = t[i][2]
+	local light = display.newRoundedRect( 183 , 130, 17, 17, 2)
 	light:setFillColor( 0, 0, 0)
 	light.alpha = 0.5
 end
@@ -132,3 +160,12 @@ enterButon:addEventListener( "touch", namePrint)
 startButton:addEventListener( "touch", start)
 
 
+-- Called when a key event has been received
+local function onKeyEvent( event )
+    local message = "Key '" .. event.keyName .. "' has key code: " .. tostring( event.nativeKeyCode )
+    print( message )
+    return false
+end
+ 
+-- Add the key event listener
+Runtime:addEventListener( "key", onKeyEvent )
