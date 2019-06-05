@@ -67,9 +67,13 @@ t[34] = {102.5, 130}
 t[35] = {119, 130}
 t[36] = {135, 130}
 t[37] = {151, 130}
-t[36] = {136, 130}
-t[37] = {183, 130}
+t[38] = {136, 130}
+t[39] = {183, 130}
+t[40] = {199, 130}
+t[40].id = "73"
 
+
+print (t[40].id)
 --print( t[2][1])
 
 local myTable = { 'a', 'b', 'c', 'd' }
@@ -119,19 +123,32 @@ local function createLight()
 	--print(y)
 	--a = "63, 81"
 	--tonumber(a)
-	-- i = math.random(1, 11)
+	-- i = math.random(1, 39)
 	-- x = t[i][1]
 	-- y = t[i][2]
-	local light = display.newRoundedRect( 183 , 130, 17, 17, 2)
+	local light = display.newRoundedRect( 199 , 130, 17, 17, 2)
 	light:setFillColor( 0, 0, 0)
 	light.alpha = 0.5
 end
 
+local function keyCheck()
+	local function keys( event )
+		local correct = 0
+		if (tostring(event.nativeKeyCode) == t[40].id) then
+			correct = correct + 1
+			print("correct : " .. correct)
+		end
+		game()
+	end
+	Runtime:addEventListener( "key", keys)
+
+end
 
 local function game()
 	if (functCheck3 >= 1) then
 		createLight()
 	end
+	keyCheck()
 end 
 -- PERFORM WITH DELAY game() so it will not automaticlly light up after start is pressed
 
@@ -164,6 +181,7 @@ startButton:addEventListener( "touch", start)
 local function onKeyEvent( event )
     local message = "Key '" .. event.keyName .. "' has key code: " .. tostring( event.nativeKeyCode )
     print( message )
+    print( event.nativeKeyCode)
     return false
 end
  
