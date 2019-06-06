@@ -73,6 +73,7 @@ t[40] = {199, 130}
 t[40].id = "73"
 
 
+
 print (t[40].id)
 --print( t[2][1])
 
@@ -89,6 +90,7 @@ local functCheck = 0
 local functCheck2 = 0
 local functCheck3 = 0
 -- To check if start() has been called on
+
 --local function keys( event )
 --	if (event.keyName == "a" or event.keyName == "j") and (event.phase == "down") then
 --		print("Key '".. event.keyName .. "' was pressed " .. event.phase)
@@ -109,11 +111,7 @@ local function namePrint( event )
 		nameText.text = "Write your name."
 	end
 end
-			
---Runtime:addEventListener( "key", keys)
-
-
-
+		
 local function createLight()
 	-- local x = table stuff
 	-- local y = table stuff 
@@ -129,28 +127,36 @@ local function createLight()
 	local light = display.newRoundedRect( 199 , 130, 17, 17, 2)
 	light:setFillColor( 0, 0, 0)
 	light.alpha = 0.5
-end
 
-local function keyCheck()
-	local function keys( event )
-		local correct = 0
-		if (tostring(event.nativeKeyCode) == t[40].id) then
-			correct = correct + 1
-			print("correct : " .. correct)
-		end
-		game()
-	end
-	Runtime:addEventListener( "key", keys)
-
+	keyCheck()
 end
 
 local function game()
 	if (functCheck3 >= 1) then
 		createLight()
 	end
-	keyCheck()
 end 
--- PERFORM WITH DELAY game() so it will not automaticlly light up after start is pressed
+
+local function keyCheck()
+	local function keys( event )
+		local correct = 0
+		local pressed = 0
+			if ((tostring(event.nativeKeyCode) == t[40].id) and (event.phase == "down")) then
+				correct = correct + 1
+				print("correct : " .. correct)
+			end
+			if (event.phase == "down") then
+				pressed = pressed + 1
+				print("pressed: ".. pressed)
+			end
+			while pressed < 100 do
+				game()
+			end	
+		end
+	Runtime:addEventListener( "key", keys)
+end
+
+
 
 local function start( event )
 	if (functCheck >= 1) then
