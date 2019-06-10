@@ -28,60 +28,102 @@ local startButton = display.newImageRect( "assets/startButton.png", 60, 47)
 startButton.x = display.contentCenterX
 startButton.y = 160
 
+local correct = 0
+local pressed = 0
+
 t = {}
 
 t[1] = {63, 81}
+t[1].id = "27"
 t[2] = {90, 81}
+t[2].id = "112"
 t[3] = {106, 81}
+t[3].id = "113"
 t[4] = {122.5, 81}
+t[4].id = "114 "
 t[5] = {139, 81}
+t[5].id = "115"
 t[6] = {164, 81}
+t[6].id = "116"
 t[7] = {180, 81}
+t[7].id = "117"
 t[8] = {197, 81}
+t[8].id = "118"
 t[9] = {213, 81}
+t[9].id = "119"
 t[10] = {238, 81}
+t[10].id = "120"
 t[11] = {254, 81}
+t[11].id = "121"
 t[12] = {270, 81}
+t[12].id = "122"
 t[13] = {287, 81}
+t[13].id = "123"
 t[14] = {62, 112.5}
+t[14].id = "192"
 t[15] = {78, 112.5}
+t[15].id = "49"
 t[16] = {94, 112.5}
+t[16].id = "50"
 t[17] = {110.5, 112.5}
+t[17].id = "51"
 t[18] = {126.5, 112.5}
+t[18].id = "52"
 t[19] = {142.5, 112.5}
+t[19].id = "53"
 t[20] = {158, 112.5}
+t[20].id = "54"
 t[21] = {175, 112.5}
+t[21].id = "55"
 t[22] = {191, 112.4}
+t[22].id = "56"
 t[23] = {207, 112.5}
+t[23].id = "57"
 t[24] = {223, 112.5}
+t[24].id = "48"
 t[25] = {239.5, 112.5}
+t[25].id = "189"
 t[26] = {255.5, 112.5}
+t[26].id = "187"
 t[27] = {280, 112.5}
+t[27].id = "8"
 t[28] = {369, 112.5}
+t[28].id = "144"
 t[29] = {385, 112.5}
+t[29].id = "111"
 t[30] = {402, 112.5}
+t[30].id = "106"
 t[31] = {431, 112.5}
+t[31].id = "109"
 t[32] = {66, 130}
+t[32].id = "9"
 t[33] = {87, 130}
+t[33].id = "81"
 t[34] = {102.5, 130}
+t[34].id = "87"
 t[35] = {119, 130}
+t[35].id = "69"
 t[36] = {135, 130}
+t[36].id = "82"
 t[37] = {151, 130}
+t[37].id = "84"
 t[38] = {136, 130}
+t[38].id = "89"
 t[39] = {183, 130}
+t[39].id = "85"
 t[40] = {199, 130}
 t[40].id = "73"
 
 
 
-print (t[40].id)
+--print (t[40].id)
 --print( t[2][1])
 
-local myTable = { 'a', 'b', 'c', 'd' }
+--local myTable = { 'a', 'b', 'c', 'd' }
 
-i = math.random(1, 2)
-print(t[i][1])
-print(t[i][2])
+--i = math.random(1, 2)
+--print(t[i][1])
+--print(t[i][2])
 --print( t[ math.random( #t ) ] )
 
 
@@ -89,6 +131,8 @@ print(t[i][2])
 local functCheck = 0
 local functCheck2 = 0
 local functCheck3 = 0
+local functCheck4 = 0
+local functCheck5 = 0
 -- To check if start() has been called on
 
 --local function keys( event )
@@ -121,27 +165,19 @@ local function createLight()
 	--print(y)
 	--a = "63, 81"
 	--tonumber(a)
-	-- i = math.random(1, 39)
-	-- x = t[i][1]
-	-- y = t[i][2]
-	local light = display.newRoundedRect( 199 , 130, 17, 17, 2)
+	i = math.random(1, 40)
+	x = t[i][1]
+	y = t[i][2]
+	local light = display.newRoundedRect( x , y, 17, 17, 2)
 	light:setFillColor( 0, 0, 0)
 	light.alpha = 0.5
-
-	keyCheck()
 end
 
-local function game()
-	if (functCheck3 >= 1) then
-		createLight()
-	end
-end 
+
 
 local function keyCheck()
 	local function keys( event )
-		local correct = 0
-		local pressed = 0
-			if ((tostring(event.nativeKeyCode) == t[40].id) and (event.phase == "down")) then
+			if ((tostring(event.nativeKeyCode) == t[i].id) and (event.phase == "down")) then
 				correct = correct + 1
 				print("correct : " .. correct)
 			end
@@ -149,12 +185,26 @@ local function keyCheck()
 				pressed = pressed + 1
 				print("pressed: ".. pressed)
 			end
-			while pressed < 100 do
-				game()
-			end	
 		end
 	Runtime:addEventListener( "key", keys)
+	functCheck5 = functCheck5 + 1
 end
+
+
+
+local function game()
+	if (functCheck3 >= 1) then
+		createLight()
+	end
+	functCheck4 = functCheck4 + 1
+	print("functCheck4: " .. functCheck4)
+	if (functCheck4 >= 1) then
+		keyCheck()
+		print("yues it works")
+	end
+end 
+
+
 
 
 
@@ -183,13 +233,13 @@ enterButon:addEventListener( "touch", namePrint)
 startButton:addEventListener( "touch", start)
 
 
--- Called when a key event has been received
-local function onKeyEvent( event )
-    local message = "Key '" .. event.keyName .. "' has key code: " .. tostring( event.nativeKeyCode )
-    print( message )
-    print( event.nativeKeyCode)
-    return false
-end
- 
--- Add the key event listener
-Runtime:addEventListener( "key", onKeyEvent )
+---- Called when a key event has been received
+--local function onKeyEvent( event )
+--    local message = "Key '" .. event.keyName .. "' has key code: " .. tostring( event.nativeKeyCode )
+--    print( message )
+--    print( event.nativeKeyCode)
+--    return false
+--end
+-- 
+---- Add the key event listener
+--Runtime:addEventListener( "key", onKeyEvent )--
