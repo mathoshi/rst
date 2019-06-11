@@ -156,6 +156,21 @@ local function namePrint( event )
 	end
 end
 		
+local function keyCheck()
+	local function keys( event )
+		if ((tostring(event.nativeKeyCode) == t[i].id) and (event.phase == "down")) then
+			correct = correct + 1
+			print("correct : " .. correct)
+		end
+		if (event.phase == "down") then
+			pressed = pressed + 1
+			print("pressed: ".. pressed)
+			functCheck5 = functCheck5 + 1
+		end
+	end
+	Runtime:addEventListener( "key", keys)
+end
+
 local function createLight()
 	-- local x = table stuff
 	-- local y = table stuff 
@@ -171,26 +186,17 @@ local function createLight()
 	local light = display.newRoundedRect( x , y, 17, 17, 2)
 	light:setFillColor( 0, 0, 0)
 	light.alpha = 0.5
+
+	keyCheck()
 end
 
-
-
-local function keyCheck()
-	local function keys( event )
-			if ((tostring(event.nativeKeyCode) == t[i].id) and (event.phase == "down")) then
-				correct = correct + 1
-				print("correct : " .. correct)
-			end
-			if (event.phase == "down") then
-				pressed = pressed + 1
-				print("pressed: ".. pressed)
-			end
+local function continue()
+	if (functCheck5 >= 1) then
+		if (pressed ~= 100) then
+			createLight()
 		end
-	Runtime:addEventListener( "key", keys)
-	functCheck5 = functCheck5 + 1
+	end
 end
-
-
 
 local function game()
 	if (functCheck3 >= 1) then
@@ -198,15 +204,8 @@ local function game()
 	end
 	functCheck4 = functCheck4 + 1
 	print("functCheck4: " .. functCheck4)
-	if (functCheck4 >= 1) then
-		keyCheck()
-		print("yues it works")
-	end
+	continue()
 end 
-
-
-
-
 
 local function start( event )
 	if (functCheck >= 1) then
