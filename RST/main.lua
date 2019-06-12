@@ -29,7 +29,7 @@ startButton.x = display.contentCenterX
 startButton.y = 160
 
 local correct = 0
-local pressed = 0
+pressed = 0
 
 t = {}
 
@@ -165,7 +165,13 @@ local function keyCheck()
 		if (event.phase == "down") then
 			pressed = pressed + 1
 			print("pressed: ".. pressed)
-			functCheck5 = functCheck5 + 1
+			functCheck5	= functCheck5 + 1
+			print("dfd")
+			i = math.random(1, 40)
+			x = t[i][1]
+			y = t[i][2]
+			light.x = x
+			light.y = y
 		end
 	end
 	Runtime:addEventListener( "key", keys)
@@ -183,20 +189,27 @@ local function createLight()
 	i = math.random(1, 40)
 	x = t[i][1]
 	y = t[i][2]
-	local light = display.newRoundedRect( x , y, 17, 17, 2)
+	light = display.newRoundedRect( x , y, 17, 17, 2)
 	light:setFillColor( 0, 0, 0)
 	light.alpha = 0.5
 
 	keyCheck()
 end
 
-local function continue()
-	if (functCheck5 >= 1) then
-		if (pressed ~= 100) then
-			createLight()
-		end
-	end
-end
+--local function continue()
+--	if (functCheck5 >= 1) then
+--		print("functCkeck5: "..functCheck5)
+--		print("dfd:".. pressed)
+--		if (pressed >= 1) then
+--			print("dfd")
+--			i = math.random(1, 40)
+--			x = t[i][1]
+--			y = t[i][2]
+--			light.x = x
+--			light.y = y
+--		end
+--	end
+--end
 
 local function game()
 	if (functCheck3 >= 1) then
@@ -204,7 +217,7 @@ local function game()
 	end
 	functCheck4 = functCheck4 + 1
 	print("functCheck4: " .. functCheck4)
-	continue()
+	--continue()
 end 
 
 local function start( event )
