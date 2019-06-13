@@ -40,7 +40,7 @@ t[2].id = "112"
 t[3] = {106, 81}
 t[3].id = "113"
 t[4] = {122.5, 81}
-t[4].id = "114 "
+t[4].id = "114"
 t[5] = {139, 81}
 t[5].id = "115"
 t[6] = {164, 81}
@@ -93,7 +93,7 @@ t[29] = {385, 112.5}
 t[29].id = "111"
 t[30] = {402, 112.5}
 t[30].id = "106"
-t[31] = {431, 112.5}
+t[31] = {418, 112.5}
 t[31].id = "109"
 t[32] = {66, 130}
 t[32].id = "9"
@@ -107,7 +107,7 @@ t[36] = {135, 130}
 t[36].id = "82"
 t[37] = {151, 130}
 t[37].id = "84"
-t[38] = {136, 130}
+t[38] = {167, 130}
 t[38].id = "89"
 t[39] = {183, 130}
 t[39].id = "85"
@@ -161,17 +161,17 @@ local function keyCheck()
 		if ((tostring(event.nativeKeyCode) == t[i].id) and (event.phase == "down")) then
 			correct = correct + 1
 			print("correct : " .. correct)
-		end
-		if (event.phase == "down") then
-			pressed = pressed + 1
-			print("pressed: ".. pressed)
-			functCheck5	= functCheck5 + 1
-			print("dfd")
 			i = math.random(1, 40)
 			x = t[i][1]
 			y = t[i][2]
 			light.x = x
 			light.y = y
+		end
+		if (event.phase == "down") then
+			pressed = pressed + 1
+			print("pressed: ".. pressed)
+			print("Current Key keyCode: ".. event.nativeKeyCode)
+			functCheck5	= functCheck5 + 1
 		end
 	end
 	Runtime:addEventListener( "key", keys)
@@ -189,7 +189,7 @@ local function createLight()
 	i = math.random(1, 40)
 	x = t[i][1]
 	y = t[i][2]
-	light = display.newRoundedRect( x , y, 17, 17, 2)
+	light = display.newRoundedRect( x, y , 17, 17, 2)
 	light:setFillColor( 0, 0, 0)
 	light.alpha = 0.5
 
@@ -220,6 +220,14 @@ local function game()
 	--continue()
 end 
 
+local function time()
+	
+		a = a + 1
+		print("a: "..a)
+		display.newText("Timer: " .. a .. "", 50, 40, "Times", 10)
+	end
+end
+
 local function start( event )
 	if (functCheck >= 1) then
 		display.remove(startButton)
@@ -230,6 +238,7 @@ local function start( event )
 		keyboard.y = 130
 		keyboard.width = 400
 		keyboard.height = 148
+		timer.performWithDelay( 1000, time, 59)
 		functCheck3 = functCheck3 + 1
 	elseif (functCheck2 >= 1) then
 		nameText:setFillColor( 1, 0, 0)
@@ -254,4 +263,4 @@ startButton:addEventListener( "touch", start)
 --end
 -- 
 ---- Add the key event listener
---Runtime:addEventListener( "key", onKeyEvent )--
+--Runtime:addEventListener( "key", onKeyEvent )----
