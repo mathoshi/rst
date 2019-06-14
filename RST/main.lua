@@ -28,8 +28,12 @@ local startButton = display.newImageRect( "assets/startButton.png", 60, 47)
 startButton.x = display.contentCenterX
 startButton.y = 160
 
+local timeUp = display.newText( "", 50, 40, "Times", 10)
+
 local correct = 0
 pressed = 0
+a = 0 
+
 
 t = {}
 
@@ -221,11 +225,10 @@ local function game()
 end 
 
 local function time()
-	
-		a = a + 1
-		print("a: "..a)
-		display.newText("Timer: " .. a .. "", 50, 40, "Times", 10)
-	end
+	a = a + 1
+	print("a: "..a)
+	timeUp.text = "Timer: " .. a
+	--display.newText("Timer: " .. a .. 
 end
 
 local function start( event )
@@ -238,7 +241,7 @@ local function start( event )
 		keyboard.y = 130
 		keyboard.width = 400
 		keyboard.height = 148
-		timer.performWithDelay( 1000, time, 59)
+		timer.performWithDelay( 1000, time, 0)
 		functCheck3 = functCheck3 + 1
 	elseif (functCheck2 >= 1) then
 		nameText:setFillColor( 1, 0, 0)
